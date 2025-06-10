@@ -482,7 +482,7 @@ class PerfumApp {
     }
 
     checkUserSession() {
-        // In a real app, check for stored session
+        // CHEQUEAR SI SE GUARDA LA SESION
         const storedUser = this.getStoredUser();
         if (storedUser) {
             this.currentUser = storedUser;
@@ -491,12 +491,12 @@ class PerfumApp {
     }
 
     getStoredUser() {
-        // Simulate session storage without using localStorage
+        // SIMULAN EL GUARDADO DEL USUARIO SIN USAR EL LOCALSTORAGE
         return window.currentUser || null;
     }
 
     setStoredUser(user) {
-        // Simulate session storage without using localStorage
+        // SIMULAN EL GUARDADO DEL USUARIO SIN USAR EL LOCALSTORAGE
         window.currentUser = user;
     }
 
@@ -554,7 +554,7 @@ class PerfumApp {
         const role = userRole.value;
         const terms = acceptTerms.checked;
 
-        // Validate form
+        // VALIDACION DEL FORMULARIO DE REGISTRO
         if (!name) {
             this.showError('registerName', 'Nombre requerido');
             return;
@@ -585,13 +585,13 @@ class PerfumApp {
             return;
         }
 
-        // Check if user exists
+        // VALIDAR SI EL USUARIO EXISTE
         if (this.users.find(u => u.email === email)) {
             this.showAlert('danger', 'El email ya está registrado');
             return;
         }
 
-        // Create new user
+        // CREAR EL NUEVO USUARIO
         const newUser = {
             id: this.users.length + 1,
             name,
@@ -649,7 +649,7 @@ class PerfumApp {
             preferencias: []
         };
 
-        // Get preferences
+        // OBTENER LAS PREFERENCIAS
         const prefCheckboxes = ['prefFresh', 'prefWoody', 'prefFloral', 'prefOriental'];
         prefCheckboxes.forEach(id => {
             const checkbox = document.getElementById(id);
@@ -658,7 +658,7 @@ class PerfumApp {
             }
         });
 
-        // Update password if provided
+        // CAMBIAR LA CONTRASEÑA
         const newPassword = document.getElementById('newPassword');
         const confirmNewPassword = document.getElementById('confirmNewPassword');
 
@@ -674,7 +674,7 @@ class PerfumApp {
             formData.password = newPassword.value;
         }
 
-        // Update user
+        // UPDATEAR LOS DATOS DEL USUARIO
         Object.assign(this.currentUser, formData);
         this.setStoredUser(this.currentUser);
         this.closeModal('profileModal');
@@ -717,6 +717,7 @@ class PerfumApp {
         }, 1000);
     }
 
+    // FILTRAR PRODUCTOS
     filterProducts() {
         const filterSelects = document.querySelectorAll('.filter-section select');
         if (filterSelects.length < 4) return;
@@ -775,6 +776,7 @@ class PerfumApp {
         });
     }
 
+    // CREACION DE LA CARD DEL PRODUCTO
     createProductCard(product) {
         const col = document.createElement('div');
         col.className = 'col-lg-3 col-md-4 col-sm-6';
@@ -814,7 +816,7 @@ class PerfumApp {
         const product = this.products.find(p => p.id === productId);
         if (!product) return;
 
-        // Create product detail modal
+        // CREACION DEL DETALLE DEL PRODUCTO
         const modalHtml = `
             <div class="modal fade" id="productModal" tabindex="-1">
                 <div class="modal-dialog modal-lg">
@@ -900,6 +902,7 @@ class PerfumApp {
         return Object.values(requirements).every(req => req);
     }
 
+    // VALIDACION "CONTRASEÑA" Y "VALIDAR CONTRASEÑA" SEAN IGUALES
     validateConfirmPassword() {
         const password = document.getElementById('registerPassword').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
@@ -914,6 +917,7 @@ class PerfumApp {
         }
     }
 
+    // REGEX VALIDACION CONTRASEÑA CUMPLA PARAMETROS MINIMOS
     isPasswordValid(password) {
         return password.length >= 8 &&
                /[A-Z]/.test(password) &&
@@ -922,6 +926,7 @@ class PerfumApp {
                /[!@#$%^&*(),.?":{}|<>]/.test(password);
     }
 
+    // REGEX VALIDACION CORREO
     validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
@@ -958,26 +963,26 @@ class PerfumApp {
     }
 
     showProfile() {
-        // Populate profile form
+        // Insertar datos al formulario del perfil
         document.getElementById('profileName').value = this.currentUser.name;
         document.getElementById('profileEmail').value = this.currentUser.email;
         document.getElementById('profilePhone').value = this.currentUser.telefono || '';
         document.getElementById('profileBirthdate').value = this.currentUser.fecha_nacimiento || '';
         document.getElementById('profileAddress').value = this.currentUser.direccion || '';
 
-        // Set preferences
+        // Agrega las preferencias
         const prefCheckboxes = ['prefFresh', 'prefWoody', 'prefFloral', 'prefOriental'];
         prefCheckboxes.forEach(id => {
             const prefName = id.replace('pref', '').toLowerCase();
             document.getElementById(id).checked = this.currentUser.preferencias.includes(prefName);
         });
 
-        // Show admin panel if user is admin
+        // Mostrar panel de Administrador si el rol es de "Admin"
         if (this.currentUser.role === 'admin') {
             document.getElementById('adminPanel').style.display = 'block';
         }
 
-        // Show modal
+        // Mostrar Modal del perfil
         const modal = new bootstrap.Modal(document.getElementById('profileModal'));
         modal.show();
     }
@@ -988,7 +993,7 @@ class PerfumApp {
         this.updateNavigation();
         this.showAlert('success', 'Sesión cerrada exitosamente');
                 
-        // Reset navigation
+        // Resetear la navegacion al cerrar sesion
         const navItems = document.querySelector('.navbar-nav');
         navItems.innerHTML = `
             <li class="nav-item">
