@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eau de Perfum- Encuentra tu perfume ideal</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="../css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="fas fa-spray-can me-2"></i>Eau de Perfum
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#brands">Marcas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            <i class="fas fa-user me-1"></i>Ingresar
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#registerModal">
+                            Registrarse
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SECCION DE BUSCADOR -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="hero-title">Encuentra tu Fragancia Perfecta</h1>
+                    <p class="hero-subtitle">Compara precios, lee reseñas y descubre los mejores perfumes del mercado</p>
+                    <div class="search-container">
+                        <div class="d-flex flex-column flex-md-row">
+                            <input type="text" class="form-control search-input flex-grow-1" placeholder="Buscar perfume, marca o tipo...">
+                            <button class="btn search-btn">
+                                <i class="fas fa-search me-2"></i>Buscar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCION DE LAS CARACTERISTICAS -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3>Búsqueda Avanzada</h3>
+                        <p>Encuentra perfumes por marca, tipo, precio y características específicas.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Comparación de Precios</h3>
+                        <p>Compara precios entre diferentes tiendas y encuentra las mejores ofertas.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Reseñas Verificadas</h3>
+                        <p>Lee opiniones reales de usuarios y toma decisiones informadas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCION DE LOS PRODUCTOS -->
+    <section id="products" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 text-gradient">Productos Destacados</h2>
+            
+            <!-- FILTROS -->
+            <div class="filter-section">
+                <h5>Filtros</h5>
+                <div class="row">
+                    <div class="col-md-3">
+                        <select class="form-select">
+                            <option>Todas las marcas</option>
+                            <option>Chanel</option>
+                            <option>Dior</option>
+                            <option>Versace</option>
+                            <option>Paco Rabanne</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select">
+                            <option>Tipo de fragancia</option>
+                            <option>Eau de Parfum</option>
+                            <option>Eau de Toilette</option>
+                            <option>Cologne</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select">
+                            <option>Género</option>
+                            <option>Masculino</option>
+                            <option>Femenino</option>
+                            <option>Unisex</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select">
+                            <option>Rango de precio</option>
+                            <option>$0 - $50.000</option>
+                            <option>$50.000 - $100.000</option>
+                            <option>$100.000+</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div class="loading" id="loadingSpinner">
+                <div class="spinner"></div>
+                <p>Cargando productos...</p>
+            </div>
+
+            <!-- LISTA DE PRODUCTOS -->
+            <div class="row" id="productsGrid">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="../images/chanel5.webp" alt="Chanel No. 5" />
+                        </div>
+                        <div class="product-info">
+                            <h5 class="product-title">Chanel No. 5</h5>
+                            <p class="product-brand">Chanel</p>
+                            <div class="product-price">$89.990</div>
+                            <div class="product-actions">
+                                <button class="btn btn-primary">Ver Detalles</button>
+                                <div class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="../images/sauvage.webp" alt="Sauvage" />
+                        </div>
+                        <div class="product-info">
+                            <h5 class="product-title">Sauvage</h5>
+                            <p class="product-brand">Dior</p>
+                            <div class="product-price">$79.990</div>
+                            <div class="product-actions">
+                                <button class="btn btn-primary btn-sm">Ver Detalles</button>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="../images/eros.png" alt="Eros"/>
+                        </div>
+                        <div class="product-info">
+                            <h5 class="product-title">Eros</h5>
+                            <p class="product-brand">Versace</p>
+                            <div class="product-price">$65.990</div>
+                            <div class="product-actions">
+                                <button class="btn btn-primary btn-sm">Ver Detalles</button>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="../images/onemillion.webp" alt="1 Million"/>
+                        </div>
+                        <div class="product-info">
+                            <h5 class="product-title">1 Million</h5>
+                            <p class="product-brand">Paco Rabanne</p>
+                            <div class="product-price">$55.990</div>
+                            <div class="product-actions">
+                                <button class="btn btn-primary btn-sm">Ver Detalles</button>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE MARCAS -->
+    <section id="brands" class="brands-section py-5">
+        <div class="container">
+            <div class="brands-header text-center mb-5">
+                <h2 class="brands-title">Marcas Premium</h2>
+                <p class="brands-subtitle">Descubre las mejores marcas de perfumes del mundo</p>
+            </div>
+
+            <!-- CATEGORIA DE MARCAS -->
+            <div class="brand-categories mb-4">
+                <div class="category-filters text-center">
+                    <button class="category-btn active" data-category="all">Todas</button>
+                    <button class="category-btn" data-category="luxury">Lujo</button>
+                    <button class="category-btn" data-category="designer">Diseñador</button>
+                    <button class="category-btn" data-category="niche">Nicho</button>
+                </div>
+            </div>
+
+            <!-- MARCAS GRID -->
+            <div class="brands-grid" id="brandsGrid">
+            </div>
+
+            <!-- ESTADISTICAS DE LAS MARCAS -->
+            <div class="brand-stats mt-5">
+                <div class="row text-center">
+                    <div class="col-md-3 col-6">
+                        <div class="stat-card">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Marcas Premium</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="stat-card">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Fragancias</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="stat-card">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Países</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <div class="stat-card">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Auténticas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL DEL DETALLE DE LAS MARCAS -->
+    <div class="modal fade" id="brandModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content brand-modal-content">
+                <div class="modal-header brand-modal-header">
+                    <h5 class="modal-title brand-modal-title"></h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body brand-modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DEL LOGIN -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Iniciar Sesión</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" id="loginEmail" required>
+                            <div class="invalid-feedback">Por favor ingresa un email válido.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                            <div class="invalid-feedback">La contraseña es requerida.</div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">Recordarme</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal" data-bs-dismiss="modal">¿Olvidaste tu contraseña?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DEL FORMULARIO DE REGISTRO -->
+    <div class="modal fade" id="registerModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Registrarse</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm">
+                        <div class="mb-3">
+                            <label class="form-label">Nombre Completo</label>
+                            <input type="text" class="form-control" id="registerName" required>
+                            <div class="invalid-feedback">El nombre es requerido.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" id="registerEmail" required>
+                            <div class="invalid-feedback">Por favor ingresa un email válido.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="registerPassword" required>
+                            <div class="password-requirements">
+                                <div class="requirement" id="length">
+                                    <i class="fas fa-times me-2"></i>Mínimo 8 caracteres
+                                </div>
+                                <div class="requirement" id="uppercase">
+                                    <i class="fas fa-times me-2"></i>Una letra mayúscula
+                                </div>
+                                <div class="requirement" id="lowercase">
+                                    <i class="fas fa-times me-2"></i>Una letra minúscula
+                                </div>
+                                <div class="requirement" id="number">
+                                    <i class="fas fa-times me-2"></i>Un número
+                                </div>
+                                <div class="requirement" id="special">
+                                    <i class="fas fa-times me-2"></i>Un carácter especial
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Confirmar Contraseña</label>
+                            <input type="password" class="form-control" id="confirmPassword" required>
+                            <div class="invalid-feedback">Las contraseñas no coinciden.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Tipo de Usuario</label>
+                            <select class="form-select" id="userRole" required>
+                                <option value="">Seleccionar...</option>
+                                <option value="customer">Cliente</option>
+                                <option value="store">Tienda</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="acceptTerms" required>
+                                <label class="form-check-label" for="acceptTerms">
+                                    Acepto los términos y condiciones
+                                </label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE OLVIDE LA CLAVE -->
+    <div class="modal fade" id="forgotPasswordModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Recuperar Contraseña</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="forgotPasswordForm">
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" id="recoveryEmail" required>
+                            <div class="invalid-feedback">Por favor ingresa un email válido.</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Enviar Enlace de Recuperación</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DEL PERFIL DEL USUARIO -->
+    <div class="modal fade" id="profileModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Mi Perfil</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="profileForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Nombre Completo</label>
+                                    <input type="text" class="form-control" id="profileName" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="profileEmail" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Teléfono</label>
+                                    <input type="tel" class="form-control" id="profilePhone">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Fecha de Nacimiento</label>
+                                    <input type="date" class="form-control" id="profileBirthdate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Dirección</label>
+                            <input type="text" class="form-control" id="profileAddress">
+                        </div>
+                        <div class="admin-panel" id="adminPanel" style="display: none;">
+                            <h6><i class="fas fa-cog me-2"></i>Panel de Administración</h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Nueva Contraseña</label>
+                                        <input type="password" class="form-control" id="newPassword">
+                                        <small class="form-text text-muted">Deja en blanco para mantener la actual</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Confirmar Nueva Contraseña</label>
+                                        <input type="password" class="form-control" id="confirmNewPassword">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Preferencias de Fragancia</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="prefFresh">
+                                    <label class="form-check-label" for="prefFresh">Frescas</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="prefWoody">
+                                    <label class="form-check-label" for="prefWoody">Amaderadas</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="prefFloral">
+                                    <label class="form-check-label" for="prefFloral">Florales</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="prefOriental">
+                                    <label class="form-check-label" for="prefOriental">Orientales</label>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Actualizar Perfil</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <h5>Eau de Perfum</h5>
+                    <p>Comparamos precios y te ofrecemos las mejores reseñas.</p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5>Enlaces</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">Inicio</a></li>
+                        <li><a href="#" class="text-white-50">Productos</a></li>
+                        <li><a href="#" class="text-white-50">Marcas</a></li>
+                        <li><a href="#" class="text-white-50">Ofertas</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Soporte</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50">Centro de Ayuda</a></li>
+                        <li><a href="#" class="text-white-50">Contacto</a></li>
+                        <li><a href="#" class="text-white-50">Términos y Condiciones</a></li>
+                        <li><a href="#" class="text-white-50">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>Newsletter</h5>
+                    <p class="text-white-50">Recibe ofertas exclusivas y novedades</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Tu email">
+                        <button class="btn btn-primary" type="button">Suscribir</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="text-white-50">&copy; 2025 Eau de Perfum. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/mainpage.js"></script>
+</body>
+</html>
