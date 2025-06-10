@@ -150,6 +150,7 @@ class PerfumApp {
                 gender: 'Femenino',
                 rating: 5,
                 description: 'El perfume más icónico del mundo',
+                image: '../images/chanel5.webp',
                 stores: [
                     { name: 'Perfumería Bella', price: 89990 },
                     { name: 'Fragrance Store', price: 92990 }
@@ -164,6 +165,7 @@ class PerfumApp {
                 gender: 'Masculino',
                 rating: 4,
                 description: 'Fragancia fresca e intensa',
+                image: '../images/sauvage.webp',
                 stores: [
                     { name: 'Perfumería Bella', price: 79990 },
                     { name: 'Luxury Scents', price: 81990 }
@@ -178,6 +180,7 @@ class PerfumApp {
                 gender: 'Masculino',
                 rating: 5,
                 description: 'Pasión, audacia y deseo',
+                image: '../images/eros.png',
                 stores: [
                     { name: 'Perfumería Bella', price: 65990 },
                     { name: 'Scent World', price: 67990 }
@@ -192,6 +195,7 @@ class PerfumApp {
                 gender: 'Masculino',
                 rating: 4,
                 description: 'Fragancia magnética y seductora',
+                image: '../images/onemillion.webp',
                 stores: [
                     { name: 'Perfumería Bella', price: 55990 },
                     { name: 'Golden Fragrances', price: 57990 }
@@ -505,7 +509,7 @@ class PerfumApp {
         const email = loginEmail.value;
         const password = loginPassword.value;
 
-        // Validate form
+        // Validar Formulario de Inicio de Sesion
         if (!this.validateEmail(email)) {
             this.showError('loginEmail', 'Email inválido');
             return;
@@ -516,7 +520,7 @@ class PerfumApp {
             return;
         }
 
-        // Find user
+        // Buscar Usuario
         const user = this.users.find(u => u.email === email && u.password === password);
         
         if (user) {
@@ -780,12 +784,17 @@ class PerfumApp {
         col.innerHTML = `
             <div class="product-card">
                 <div class="product-image">
-                    <i class="fas fa-spray-can"></i>
+                    ${product.image ? 
+                        `<img src="${product.image}" alt="${product.name}" class="img-fluid" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <i class="fas fa-spray-can" style="display: none;"></i>` 
+                        : 
+                        `<i class="fas fa-spray-can"></i>`
+                    }
                 </div>
                 <div class="product-info">
                     <h5 class="product-title">${product.name}</h5>
                     <p class="product-brand">${product.brand}</p>
-                    <div class="product-price">${product.price.toLocaleString()}</div>
+                    <div class="product-price">$${product.price.toLocaleString()}</div>
                     <div class="d-flex justify-content-between align-items-center">
                         <button class="btn btn-primary btn-sm" onclick="app.showProductDetails(${product.id})">
                             Ver Detalles
@@ -818,7 +827,12 @@ class PerfumApp {
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="product-image-large text-center mb-3">
-                                        <i class="fas fa-spray-can" style="font-size: 8rem; color: #6b7280;"></i>
+                                        ${product.image ? 
+                                            `<img src="${product.image}" alt="${product.name}" class="img-fluid" style="max-height: 300px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                            <i class="fas fa-spray-can" style="font-size: 8rem; color: #6b7280; display: none;"></i>` 
+                                            : 
+                                            `<i class="fas fa-spray-can" style="font-size: 8rem; color: #6b7280;"></i>`
+                                        }
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -834,7 +848,7 @@ class PerfumApp {
                                     ${product.stores.map(store => `
                                         <div class="d-flex justify-content-between align-items-center mb-2 p-2 border rounded">
                                             <span>${store.name}</span>
-                                            <span class="fw-bold">${store.price.toLocaleString()}</span>
+                                            <span class="fw-bold">$${store.price.toLocaleString()}</span>
                                         </div>
                                     `).join('')}
                                 </div>

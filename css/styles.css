@@ -118,22 +118,19 @@ body {
 /* Contenedor de imagen con altura fija */
 .product-image {
     height: 200px;
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 3rem;
-    color: #9ca3af;
-    position: relative;
-    overflow: hidden;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 15px;
 }
 
 /* Imagen real del producto */
 .product-image img {
-    max-width: 90%;
-    max-height: 90%;
+    max-height: 180px;
+    max-width: 100%;
     object-fit: contain;
-    transition: transform 0.3s ease;
 }
 
 .product-card:hover .product-image img {
@@ -143,8 +140,7 @@ body {
 /* Icono placeholder cuando no hay imagen */
 .product-image i {
     font-size: 4rem;
-    color: #cbd5e1;
-    transition: color 0.3s ease;
+    color: #6b7280;
 }
 
 .product-card:hover .product-image i {
